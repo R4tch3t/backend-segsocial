@@ -42,7 +42,6 @@ obtenerQ = () => {
         var sql = `SELECT * FROM quincenas q, descuentos_quincenas dq WHERE dq.idEmpleado=${inJSON.idUsuario} AND q.idQuincena=dq.idQuincena  ORDER BY dq.idQuincena ASC`
         con.query(sql, (err, result, fields) => {
           if (!err) {
-            console.log(result)
             if(result.length>0){
               outJSON.quincenas = result
               sql = `SELECT * FROM descuentos_quincenas dq, quincenas q WHERE dq.idEmpleado=${inJSON.idUsuario} ${subquery} AND q.idQuincena = dq.idQuincena`
@@ -65,8 +64,6 @@ obtenerQ = () => {
 
           }
         });
-
-        console.log("Connected!");
 
       }
     });

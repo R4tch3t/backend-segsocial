@@ -52,8 +52,6 @@ comprobarU = () => {
           }
         });
 
-        console.log("Connected!");
-
       }
     });
     }catch(e){

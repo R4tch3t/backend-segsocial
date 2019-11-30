@@ -45,7 +45,6 @@ obtenerQ = () => {
         var sql = `SELECT * FROM quincenas ORDER by idQuincena ASC`
         con.query(sql, (err, result, fields) => {
           if (!err) {
-             console.log(result)
             if (result.length > 0) {
               outJSON.quincenas = result
               sql = `SELECT * FROM descuentos_quincenas dq, quincenas q, empleados e WHERE q.idQuincena=dq.idQuincena ${subqueryQ} ${subqueryU} AND e.CVE_ID=dq.idEmpleado ORDER by e.CVE_ID ASC`
@@ -70,9 +69,6 @@ obtenerQ = () => {
           }
         });
 
-        
-
-        console.log("Connected!");
 
       }
     });
