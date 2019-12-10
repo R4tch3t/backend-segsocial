@@ -1,6 +1,6 @@
 const http = require('http');
 const hostname = '0.0.0.0';
-const port = 3016;
+const port = 3017;
 const mysql = require('mysql');
 
 const server = http.createServer((req, res) => {
@@ -39,17 +39,16 @@ registrar = () => {
             if (!err) {
               if(result.length>0){
                   var sql = `SELECT * FROM usuarios WHERE idUsuario=${inJSON.idUsuario}`
+                  
                   con.query(sql, (err, result, fields) => {
                     if (!err) {
                       
                       if (result[0] !== undefined && `${result[0].idUsuario}` === `${inJSON.idUsuario}`) {
-                        sql = `UPDATE usuarios SET nombre='${inJSON.nombre}', `;
-                        sql += `correo='${inJSON.correo}', `
-                        sql += `edad=${inJSON.edad}`
+                        sql = `UPDATE usuarios SET pass='${inJSON.pass}'`;
                         /*if (`${inJSON.pass}`!==`${""}`){
                           sql += `, pass='${inJSON.pass}'`
                         }*/
-                        sql += ` WHERE idUsuario=${inJSON.idUsuario} `
+                        sql += ` WHERE idUsuario=${inJSON.idUsuario}`
                         //sql += `idRol=${inJSON.idRol}, `
                         con.query(sql, function (err, result) {
                           if (err) {
@@ -105,7 +104,7 @@ registrar = () => {
           outJSON.error.name = `${e}`;
       }
 
-      if (inJSON.correo !== undefined) {
+      if (inJSON.idUsuario !== undefined) {
 
         registrar()
         
