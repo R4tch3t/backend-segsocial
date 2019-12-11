@@ -2,11 +2,10 @@ const http = require('http');
 const hostname = '0.0.0.0';
 const port = 3012;
 const mysql = require('mysql');
-
 const server = http.createServer((req, res) => {
   res.writeHead(200, {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin' : '*',
+    'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   });
