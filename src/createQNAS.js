@@ -7,7 +7,7 @@ server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
     crearQNAS()
 });
-
+ 
 crearQNAS = () => {
     var con = mysql.createConnection({
         host: "localhost",

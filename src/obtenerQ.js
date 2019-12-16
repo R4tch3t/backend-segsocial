@@ -20,7 +20,6 @@ const server = http.createServer((req, res) => {
         database: "dbsegsistema"
   });
 
- // console.log(`${res.host} : ${res.statusCode}`);
 setResponse = () => {
   outJSON = JSON.stringify(outJSON);
   res.end(`${outJSON}`);

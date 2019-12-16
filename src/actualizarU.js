@@ -102,6 +102,7 @@ registrar = () => {
      // var base64Data = inJSON.base64.replace(/^data:image\/jpg;base64,/, "");
       outJSON.error.name='none';
       outJSON.error.name2='none';
+      
     
       } catch (e) {
           console.log(`error: ${e}`);
