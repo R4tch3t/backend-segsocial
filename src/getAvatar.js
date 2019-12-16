@@ -1,6 +1,6 @@
 const http = require('http');
 const hostname = '0.0.0.0';
-const port = 3012;
+const port = 3019;
 const mysql = require('mysql');
 const server = http.createServer((req, res) => {
   res.writeHead(200, {
@@ -33,15 +33,13 @@ comprobarU = () => {
       if (err) {
         console.log(`Error: ${err}`);
       } else {
-        var sql = `SELECT idUsuario, nombre, correo, edad, pass, idRol FROM usuarios WHERE idUsuario=${inJSON.idUsuario}`
+        var sql = `SELECT idUsuario, avatar64 FROM usuarios WHERE idUsuario=${inJSON.idUsuario}`
         con.query(sql, (err, result, fields) => {
+         
           if (!err) {
+            
             if(result.length>0){
-              if(result[0].pass === inJSON.pass){
                 outJSON = result
-              }else{
-                outJSON.error.name = 'error01'
-              }
             }else{
               outJSON.error.name='error02'
             }

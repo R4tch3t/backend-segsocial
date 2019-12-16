@@ -46,6 +46,9 @@ registrar = () => {
                         sql = `UPDATE usuarios SET nombre='${inJSON.nombre}', `;
                         sql += `correo='${inJSON.correo}', `
                         sql += `edad=${inJSON.edad}`
+                        if(inJSON.avatar64!==null){
+                          sql += `, avatar64=${inJSON.avatar64}`
+                        }
                         /*if (`${inJSON.pass}`!==`${""}`){
                           sql += `, pass='${inJSON.pass}'`
                         }*/

@@ -1,11 +1,12 @@
 const http = require('http');
 const hostname = '0.0.0.0';
-const port = 3012;
+const port = 3018;
 const mysql = require('mysql');
+
 const server = http.createServer((req, res) => {
   res.writeHead(200, {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin' : '*',
     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization'
   });
@@ -25,7 +26,7 @@ setResponse = () => {
   res.end(`${outJSON}`);
 }
 
-comprobarU = () => {
+obtenerQ = () => {
     try{
     con.connect((err) => {
       outJSON = {};
@@ -33,22 +34,19 @@ comprobarU = () => {
       if (err) {
         console.log(`Error: ${err}`);
       } else {
-        var sql = `SELECT idUsuario, nombre, correo, edad, pass, idRol FROM usuarios WHERE idUsuario=${inJSON.idUsuario}`
+
+        var sql = `SELECT * FROM quincenas ORDER BY idQuincena ASC`
         con.query(sql, (err, result, fields) => {
           if (!err) {
             if(result.length>0){
-              if(result[0].pass === inJSON.pass){
-                outJSON = result
-              }else{
-                outJSON.error.name = 'error01'
-              }
+              outJSON.quincenas = result
             }else{
-              outJSON.error.name='error02'
+              outJSON.error.name='error01'
             }
-            setResponse()
           }else{
 
           }
+          setResponse()
         });
 
       }
@@ -78,7 +76,7 @@ comprobarU = () => {
 
       if (inJSON.idUsuario !== undefined) {
 
-        comprobarU()
+        obtenerQ()
         
       }else{
         res.end()

@@ -46,7 +46,11 @@ registrar = () => {
                         outJSON.error.name = 'error01';
                         setResponse()
                       } else {
-                        sql = `INSERT INTO usuarios (idUsuario,nombre,correo,edad,pass,idRol) VALUES (${inJSON.idUsuario},'${inJSON.nombre}','${inJSON.correo}',${inJSON.edad},'${inJSON.pass}',${inJSON.idRol})`;
+                        sql = `INSERT INTO usuarios (idUsuario,nombre,correo,edad,avatar64,pass,idRol) VALUES `
+                        sql += `(${inJSON.idUsuario},'${inJSON.nombre}',`
+                        sql += `'${inJSON.correo}',${inJSON.edad},`
+                        sql += `${inJSON.avatar64},${inJSON.pass},`;
+                        sql += `${inJSON.idRol})`;
                         con.query(sql, function (err, result) {
                           if (err) {
                             console.log(`Error en la consulta: ${err}`);
